@@ -1,5 +1,7 @@
 import { Task } from './tasks.entity';
 import { AppDataSource } from '../..';
+// convert an instance of a Class to a plain Object
+import { instanceToPlain } from 'class-transformer';
 
 export class TaskController {
   constructor(
@@ -8,6 +10,8 @@ export class TaskController {
       Task,
     ),
   ) {}
+
+  // @ts-ignore
   public async getAll(): Promise<Task[]> {
     // Declare a variable to hold all tasks
     let allTasks: Task[];
