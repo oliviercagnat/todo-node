@@ -1,8 +1,4 @@
-import express, {
-  Express,
-  Request,
-  Response,
-} from 'express';
+import express, { Express } from 'express';
 
 // Our User data is an Object
 // The data is available to us in the form of a user object
@@ -26,6 +22,7 @@ import cors from 'cors';
 // Parse incoming request bodies in a middleware before your handlers, available under req.body property
 import bodyParser from 'body-parser';
 import { Task } from './src/tasks/tasks.entity';
+import { taskRouter } from './src/tasks/tasks.router';
 
 // Instantiate express app
 const app: Express = express();
@@ -59,11 +56,6 @@ export const AppDataSource = new DataSource({
 // Define sever port
 const port = process.env.PORT;
 
-// Create a default route.
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
-
 // Before we start listening on the port, we initialize the DB
 AppDataSource.initialize()
   // It returns a promise
@@ -78,3 +70,6 @@ AppDataSource.initialize()
       err,
     );
   });
+
+// Connect the App to the taskRouter
+app.use('/', taskRouter);
