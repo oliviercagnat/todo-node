@@ -2,3 +2,25 @@
 
 GET http://localhost:3200/tasks
 Content-Type: application/json
+
+# Create a new task
+POST http://localhost:3200/tasks
+Content-Type: application/json
+
+{
+    "title": "Ironing clothes",
+    "date": "2022-01-01",
+    "description": "Lorem Ipsum",
+    "priority": "high",
+    "status": "todo"
+}
+
+# Update a task
+
+PUT http://localhost:3200/tasks
+Content-Type: application/json
+
+{
+    "id": "afca8679-0971-4c08-ac9d-75a6b14f5e72",
+    "status": "completed"
+}
